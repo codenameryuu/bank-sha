@@ -68,6 +68,25 @@ class UserController extends Controller
     }
 
     /**
+     * Check pin.
+     *
+     * @param  \App\Http\Requests\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function checkPin(Request $request)
+    {
+        $validation = $this->userValidation->checkPin($request);
+
+        if (!$validation->status) {
+            return $this->sendResponse($validation);
+        }
+
+        $result = $this->userService->checkPin($request);
+
+        return $this->sendResponse($result);
+    }
+
+    /**
      * Update profile.
      *
      * @param  \App\Http\Requests\Request  $request

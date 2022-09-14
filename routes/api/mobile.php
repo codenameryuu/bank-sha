@@ -34,6 +34,9 @@ Route::group(
         Route::get('show', [UserController::class, 'show'])
             ->name('show');
 
+        Route::post('check-pin', [UserController::class, 'checkPin'])
+            ->name('checkPin');
+
         Route::post('update-profile', [UserController::class, 'updateProfile'])
             ->name('updateProfile');
 

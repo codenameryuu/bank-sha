@@ -36,6 +36,37 @@ class UserValidation
     }
 
     /**
+     * Check pin validation.
+     *
+     * @param  $request
+     * @return  ArrayObject
+     */
+    public function checkPin($request)
+    {
+        $result = [];
+        $result['status'] = false;
+
+        // Check required parameter is exist
+        $validate = [
+            'user_id' => ['required', 'exists:users,id'],
+        ];
+
+        $message = [
+            'user_id.required' => 'ID pengguna tidak boleh kosong !',
+            'user_id.exists' => 'ID pengguna tidak ditemukan !',
+        ];
+
+        $request->validate($validate, $message);
+
+        // Validation success
+        $result['status'] = true;
+        $result['message'] = 'Validasi berhasil !';
+        $result = (object) $result;
+
+        return $result;
+    }
+
+    /**
      * Update profile validation.
      *
      * @param  $request

@@ -51,6 +51,32 @@ class UserService
     }
 
     /**
+     * Check pin service.
+     *
+     * @param  $request
+     * @return  ArrayObject
+     */
+    public function checkPin($request)
+    {
+        $user = User::with(['wallet'])->firstWhere('id', $request->user_id);
+
+        if (Hash::check($request->pin, $user->pin)) {
+            $status = true;
+            $message = 'PIN benar !';
+        } else {
+            $status = false;
+            $message = 'PIN salah !';
+        }
+
+        $result = (object) [
+            'status' => $status,
+            'message' => $message,
+        ];
+
+        return $result;
+    }
+
+    /**
      * Update profile service.
      *
      * @param  $request
