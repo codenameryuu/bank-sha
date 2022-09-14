@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             'name' => 'Fikri Sabriansyah',
             'username' => 'fikrisabriansyah',
             'password' => Hash::make('fikrisabriansyah'),
-            'pin' => '720720',
+            'pin' => Hash::make('720720'),
             'email' => 'fikrisabriansyah@gmail.com',
             'status' => 'Verified',
             'image' => 'fikrisabriansyah.jbg',
