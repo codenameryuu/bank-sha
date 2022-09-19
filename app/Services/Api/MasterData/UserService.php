@@ -119,7 +119,7 @@ class UserService
     public function updatePin($request)
     {
         $data = [
-            'pin' => Hash::make($request->pin),
+            'pin' => Hash::make($request->new_pin),
         ];
 
         User::where('id', $request->user_id)->update($data);
@@ -127,7 +127,7 @@ class UserService
         $user = User::with(['wallet'])->firstWhere('id', $request->user_id);
 
         $status = true;
-        $message = 'Pin berhasil diubah !';
+        $message = 'PIN berhasil diubah !';
 
         $result = (object) [
             'status' => $status,

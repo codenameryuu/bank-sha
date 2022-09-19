@@ -2,6 +2,9 @@
 
 namespace App\Validations\Api\MasterData;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 class UserValidation
 {
     /**
@@ -120,16 +123,32 @@ class UserValidation
         // Check required parameter is exist
         $validate = [
             'user_id' => ['required', 'exists:users,id'],
-            'pin' => ['required'],
+            'pin' => ['required', 'numeric', 'digits:6'],
+            'new_pin' => ['required', 'numeric', 'digits:6'],
         ];
 
         $message = [
             'user_id.required' => 'ID pengguna tidak boleh kosong !',
             'user_id.exists' => 'ID pengguna tidak ditemukan !',
             'pin.required' => 'PIN tidak boleh kosong !',
+            'pin.numeric' => 'PIN harus berformat angka !',
+            'pin.digits' => 'PIN harus 6 digit !',
+            'new_pin.required' => 'PIN baru tidak boleh kosong !',
+            'new_pin.numeric' => 'PIN baru harus berformat angka !',
+            'new_pin.digits' => 'PIN baru harus 6 digit !',
         ];
 
         $request->validate($validate, $message);
+
+        $user = User::firstWhere('id', $request->user_id);
+
+        // Check pin is correct
+        if (!Hash::check($request->pin, $user->pin)) {
+            $result['message'] = 'PIN salah !';
+            $result = (object) $result;
+
+            return $result;
+        }
 
         // Validation success
         $result['status'] = true;
