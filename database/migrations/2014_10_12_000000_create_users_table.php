@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('pin')->nullable();
             $table->enum('status', ['Verified', 'Unverified'])->default('Unverified');
             $table->string('image')->default('default.png');
-            $table->string('identity_card_image')->nullable();
+            $table->string('identity_card_image')->default('default.png');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

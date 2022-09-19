@@ -27,8 +27,6 @@ class UserSeeder extends Seeder
             'pin' => Hash::make('720720'),
             'email' => 'fikrisabriansyah@gmail.com',
             'status' => 'Verified',
-            'image' => 'fikrisabriansyah.jbg',
-            'identity_card_image' => 'fikrisabriansyah.jbg',
         ]);
 
         Wallet::create([
