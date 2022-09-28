@@ -105,4 +105,16 @@ class RegisterController extends Controller
 
         return $this->sendResponse($result);
     }
+
+    /**
+     * Get default indentity card.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getDefaultIdentityCard()
+    {
+        $result = $this->registerService->getDefaultIdentityCard();
+
+        return $this->sendResponse($result);
+    }
 }

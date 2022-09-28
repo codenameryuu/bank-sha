@@ -59,5 +59,8 @@ Route::group(
 
         Route::get('get-default-profile', [RegisterController::class, 'getDefaultProfile'])
             ->name('getDefaultProfile');
+
+        Route::get('get-default-indentity-card', [RegisterController::class, 'getDefaultIdentityCard'])
+            ->name('getDefaultIdentityCard');
     }
 );

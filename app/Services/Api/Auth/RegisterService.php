@@ -19,6 +19,7 @@ class RegisterService
     {
         $data = [
             'name' => $request->name,
+            'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'pin' => Hash::make($request->pin),
@@ -131,6 +132,27 @@ class RegisterService
     public function getDefaultProfile()
     {
         $image = asset('storage/images/users/default.png');
+
+        $status = true;
+        $message = 'Berhasil mengambil data !';
+
+        $result = (object) [
+            'status' => $status,
+            'message' => $message,
+            'data' => $image,
+        ];
+
+        return $result;
+    }
+
+    /**
+     * Get default identity card service.
+     *
+     * @return  ArrayObject
+     */
+    public function getDefaultIdentityCard()
+    {
+        $image = asset('storage/images/identity_cards/default.png');
 
         $status = true;
         $message = 'Berhasil mengambil data !';

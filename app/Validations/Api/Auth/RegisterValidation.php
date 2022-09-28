@@ -18,14 +18,16 @@ class RegisterValidation
         // Check required parameter is exist
         $validate = [
             'name' => ['required'],
+            'username' => ['required', 'unique:users,username'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required'],
             'pin' => ['required', 'numeric', 'digits:6'],
-            'identity_card_image' => ['required', 'image'],
         ];
 
         $message = [
             'name.required' => 'Nama tidak boleh kosong !',
+            'username.required' => 'Username tidak boleh kosong !',
+            'username.unique' => 'Username sudah digunakan !',
             'email.required' => 'Email tidak boleh kosong !',
             'email.email' => 'Email tidak valid !',
             'email.unique' => 'Email sudah digunakan !',
@@ -33,8 +35,6 @@ class RegisterValidation
             'pin.required' => 'PIN tidak boleh kosong !',
             'pin.numeric' => 'PIN harus berformat angka !',
             'pin.digits' => 'PIN harus 6 digit !',
-            'identity_card_image.required' => 'Foto KTP tidak boleh kosong !',
-            'identity_card_image.image' => 'Format foto KTP tidak valid !',
         ];
 
         $request->validate($validate, $message);
