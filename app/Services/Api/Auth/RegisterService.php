@@ -122,4 +122,25 @@ class RegisterService
 
         return $result;
     }
+
+    /**
+     * Get default profile service.
+     *
+     * @return  ArrayObject
+     */
+    public function getDefaultProfile()
+    {
+        $image = asset('storage/images/users/default.png');
+
+        $status = true;
+        $message = 'Berhasil mengambil data !';
+
+        $result = (object) [
+            'status' => $status,
+            'message' => $message,
+            'data' => $image,
+        ];
+
+        return $result;
+    }
 }

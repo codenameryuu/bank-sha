@@ -56,5 +56,8 @@ Route::group(
 
         Route::post('check-email', [RegisterController::class, 'checkEmail'])
             ->name('checkEmail');
+
+        Route::get('get-default-profile', [RegisterController::class, 'getDefaultProfile'])
+            ->name('getDefaultProfile');
     }
 );

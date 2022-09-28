@@ -92,4 +92,17 @@ class RegisterController extends Controller
 
         return $this->sendResponse($result);
     }
+
+
+    /**
+     * Get default profile.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getDefaultProfile()
+    {
+        $result = $this->registerService->getDefaultProfile();
+
+        return $this->sendResponse($result);
+    }
 }
