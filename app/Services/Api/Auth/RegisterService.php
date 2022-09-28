@@ -55,7 +55,14 @@ class RegisterService
             'card_number' => $cardNumber,
         ]);
 
-        $user = User::with(['wallet'])->firstWhere('id', $user->id);
+        $user = User::with(
+            [
+                'wallet' => function ($query) {
+                    $query->without(['user']);
+                }
+            ]
+        )
+            ->firstWhere('id', $user->id);
 
         $token = $user->createToken('auth_token')->plainTextToken;
         $user->token = $token;
