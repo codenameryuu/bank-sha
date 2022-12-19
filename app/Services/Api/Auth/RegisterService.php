@@ -132,11 +132,11 @@ class RegisterService
     }
 
     /**
-     * Get default profile service.
+     * Profile image service.
      *
      * @return  ArrayObject
      */
-    public function getDefaultProfile()
+    public function profileImage()
     {
         $image = asset('storage/images/users/default.png');
 
@@ -153,11 +153,11 @@ class RegisterService
     }
 
     /**
-     * Get default identity card service.
+     * Identity card image service.
      *
      * @return  ArrayObject
      */
-    public function getDefaultIdentityCard()
+    public function identityCardImage()
     {
         $image = asset('storage/images/identity_cards/default.png');
 

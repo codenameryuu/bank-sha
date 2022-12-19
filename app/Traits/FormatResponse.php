@@ -38,6 +38,12 @@ trait FormatResponse
             $error = $request->error;
         }
 
+        if ($status) {
+            $statusCode = 200;
+        } else {
+            $statusCode = 422;
+        }
+
         $result = (object) [
             'status' => $status,
             'message' => $message,
@@ -46,6 +52,7 @@ trait FormatResponse
             'error' => $error,
         ];
 
-        return $result;
+
+        return response()->json($result, $statusCode);
     }
 }

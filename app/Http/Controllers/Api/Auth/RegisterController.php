@@ -93,27 +93,26 @@ class RegisterController extends Controller
         return $this->sendResponse($result);
     }
 
-
     /**
-     * Get default profile.
+     * Profile image.
      *
      * @return \Illuminate\Http\Response
      */
-    public function getDefaultProfile()
+    public function profileImage()
     {
-        $result = $this->registerService->getDefaultProfile();
+        $result = $this->registerService->profileImage();
 
         return $this->sendResponse($result);
     }
 
     /**
-     * Get default indentity card.
+     * Indentity card image.
      *
      * @return \Illuminate\Http\Response
      */
-    public function getDefaultIdentityCard()
+    public function identityCardImage()
     {
-        $result = $this->registerService->getDefaultIdentityCard();
+        $result = $this->registerService->identityCardImage();
 
         return $this->sendResponse($result);
     }

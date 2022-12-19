@@ -57,10 +57,10 @@ Route::group(
         Route::post('check-email', [RegisterController::class, 'checkEmail'])
             ->name('checkEmail');
 
-        Route::get('get-default-profile', [RegisterController::class, 'getDefaultProfile'])
-            ->name('getDefaultProfile');
+        Route::get('profile-image', [RegisterController::class, 'profileImage'])
+            ->name('profileImage');
 
-        Route::get('get-default-identity-card', [RegisterController::class, 'getDefaultIdentityCard'])
-            ->name('getDefaultIdentityCard');
+        Route::get('identity-card-image', [RegisterController::class, 'identityCardImage'])
+            ->name('identityCardImage');
     }
 );
