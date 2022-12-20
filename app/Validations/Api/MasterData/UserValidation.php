@@ -86,7 +86,6 @@ class UserValidation
             'name' => ['required'],
             'username' => ['required', 'unique:users,username,' . $request->user_id],
             'email' => ['required', 'unique:users,email,' . $request->user_id],
-            'password' => ['nullable'],
         ];
 
         $message = [
@@ -100,6 +99,51 @@ class UserValidation
         ];
 
         $request->validate($validate, $message);
+
+        // Validation success
+        $result['status'] = true;
+        $result['message'] = 'Validasi berhasil !';
+        $result = (object) $result;
+
+        return $result;
+    }
+
+    /**
+     * Update password validation.
+     *
+     * @param  $request
+     * @return  ArrayObject
+     */
+    public function updatePassword($request)
+    {
+        $result = [];
+        $result['status'] = false;
+
+        // Check required parameter is exist
+        $validate = [
+            'user_id' => ['required', 'exists:users,id'],
+            'password' => ['required'],
+            'new_password' => ['required'],
+        ];
+
+        $message = [
+            'user_id.required' => 'ID pengguna tidak boleh kosong !',
+            'user_id.exists' => 'ID pengguna tidak ditemukan !',
+            'password.required' => 'Password tidak boleh kosong !',
+            'new_password.required' => 'Password baru tidak boleh kosong !',
+        ];
+
+        $request->validate($validate, $message);
+
+        $user = User::firstWhere('id', $request->user_id);
+
+        // Check pin is correct
+        if (!Hash::check($request->password, $user->password)) {
+            $result['message'] = 'Password salah !';
+            $result = (object) $result;
+
+            return $result;
+        }
 
         // Validation success
         $result['status'] = true;

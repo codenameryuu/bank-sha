@@ -43,6 +43,9 @@ Route::group(
         Route::post('update-profile', [UserController::class, 'updateProfile'])
             ->name('updateProfile');
 
+        Route::post('update-password', [UserController::class, 'updatePassword'])
+            ->name('updatePassword');
+
         Route::post('update-pin', [UserController::class, 'updatePin'])
             ->name('updatePin');
     }

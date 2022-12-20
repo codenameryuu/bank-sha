@@ -90,9 +90,33 @@ class UserService
             'email' => $request->email,
         ];
 
-        if ($request->password) {
-            $data['password'] = Hash::make($request->password);
-        }
+        User::where('id', $request->user_id)->update($data);
+
+        $user = User::with(['wallet'])->firstWhere('id', $request->user_id);
+
+        $status = true;
+        $message = 'Data berhasil diubah !';
+
+        $result = (object) [
+            'status' => $status,
+            'message' => $message,
+            'data' => $user,
+        ];
+
+        return $result;
+    }
+
+    /**
+     * Update password service.
+     *
+     * @param  $request
+     * @return  ArrayObject
+     */
+    public function updatePassword($request)
+    {
+        $data = [
+            'password' => Hash::make($request->new_password),
+        ];
 
         User::where('id', $request->user_id)->update($data);
 
@@ -127,7 +151,7 @@ class UserService
         $user = User::with(['wallet'])->firstWhere('id', $request->user_id);
 
         $status = true;
-        $message = 'PIN berhasil diubah !';
+        $message = 'Data berhasil diubah !';
 
         $result = (object) [
             'status' => $status,

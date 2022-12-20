@@ -106,6 +106,25 @@ class UserController extends Controller
     }
 
     /**
+     * Update password.
+     *
+     * @param  \App\Http\Requests\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function updatePassword(Request $request)
+    {
+        $validation = $this->userValidation->updatePassword($request);
+
+        if (!$validation->status) {
+            return $this->sendResponse($validation);
+        }
+
+        $result = $this->userService->updatePassword($request);
+
+        return $this->sendResponse($result);
+    }
+
+    /**
      * Update pin.
      *
      * @param  \App\Http\Requests\Request  $request
